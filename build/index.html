@@ -1,0 +1,120 @@
+<!doctype html><html><head><title>WizardAmigos</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="http://fonts.googleapis.com/css?family=Raleway:400,200,800" rel="stylesheet" type="text/css"><!-- <link rel="shortcut icon" href="img/website/favicon.ico" /> --><link rel="stylesheet" type="text/css" href="css/simplegrid.css" media="screen"><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.min.css" media="screen"><link rel="stylesheet" type="text/css" href="css/style.min.css" media="screen"><!-- <link rel="stylesheet" type="text/css" href="css/remodal.css" media="screen" /> --><!-- <link rel="stylesheet" type="text/css" href="css/remodal-default-theme.css" media="screen" /> --></head><body><div class="animsition"><nav id="nav"><img class="badge" src="css/assets/badge.svg"><h2 class="badge-label">Amigo #01</h2><ul class="list"><li class="item"><a href="#" class="link"><i aria-hidden="true" class="icon fa fa-home"></i>Home</a></li><li class="item"><a href="#" class="link"><i aria-hidden="true" class="icon fa fa-shield"></i>Skills</a></li><li class="item"><a href="#" class="link"><i aria-hidden="true" class="icon fa fa-book"></i>Lessons</a></li><li class="item"><a href="#" class="link"><i aria-hidden="true" class="icon fa fa-trophy"></i>Achievements</a></li><li class="item"><a href="#" class="link"><i aria-hidden="true" class="icon fa fa-wrench"></i>Settings</a></li></ul></nav><div id="map" onclick="toggleMap()"></div><div id="content"><div id="toggle-nav" onclick="hideNav()"><i aria-hidden="true" class="fa fa-chevron-left"></i></div><div id="toggle-chat" onclick="hideChat()"><i aria-hidden="true" class="fa fa-chevron-right"></i></div><div class="youtubeComponent"><div id="player"></div><div class="prev" onclick="prevVideo()"><i aria-hidden="true" class="previcon fa fa-chevron-left"></i> Previous</div><div class="index" onclick="toggleIndex()"><i aria-hidden="true" class="indexicon fa fa-list"></i> Index</div><div class="next" onclick="nextVideo()">Next <i aria-hidden="true" class="nexticon fa fa-chevron-right"></i></div><div class="index-modal" onclick="toggleIndex()"></div></div><div class="text"><div class="title"><h1></h1></div><div class="description"></div></div></div><div id="chat"><iframe src="https://gitter.im/codingamigos/learners/~embed"></iframe></div></div><!-- animsition end --><script src="https://www.youtube.com/player_api"></script><script src="https://code.jquery.com/jquery-2.2.4.min.js"></script><script src="https://use.fontawesome.com/503e9375ae.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js"></script><script src="http://dev/wizardAmigosConcept/build/js/bundle.js"></script><script>var playlistMeta = [
+        {"title": "Welcome to Wizard Amigos!", "desc":"This is a eLearning platform for our community of freelance programmers, the coding amigos! We meet up twice a week (Tuesday & Friday from 7PM to open end) at Co.Up in Berlin-Kreuzberg to work, talk, inspire and learn from each other.<br/><br/>In the next videos we will guide you from the very beginnings of internet literacy to becoming coding wizard."},
+        {"title": "How to create a gmail account", "desc":"asd2"},
+        {"title": "title3", "desc":"asd3"}
+    ]
+
+    function hideChat(){
+        $("#chat").toggleClass("disabled-chat")
+        $("#content").toggleClass("disabled-chat")
+        $("#toggle-chat").toggleClass("disabled-chat")
+    }
+
+    function hideNav(){
+        $("#nav").toggleClass("disabled-nav")
+        $("#content").toggleClass("disabled-nav")
+        $("#map").toggleClass("disabled-nav")
+        $("#toggle-nav").toggleClass("disabled-nav")
+    }
+
+    $(document).ready(function() {
+
+
+      /* ANIMSITION INIT */
+      $(".animsition").animsition({
+        inClass: 'fade-in-down-sm',
+        outClass: 'fade-out-up-sm',
+        inDuration: 1500,
+        outDuration: 800,
+        linkElement: '.animsition-link',
+        // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
+        loading: true,
+        loadingParentElement: 'body', //animsition wrapper element
+        loadingClass: 'animsition-loading',
+        loadingInner: '', // e.g '<img src="loading.svg" />'
+        timeout: false,
+        timeoutCountdown: 5000,
+        onLoadEvent: true,
+        browser: [ 'animation-duration', '-webkit-animation-duration'],
+        // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
+        // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
+        overlay : false,
+        overlayClass : 'animsition-overlay-slide',
+        overlayParentElement : 'body',
+        transition: function(url){ window.location.href = url; }
+      });
+      /* ANIMSITION INIT */
+    });
+
+
+    // create youtube player
+    var player;
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('player', {
+        // height: '390',
+        // width: '640',
+        // videoId: '-YzMiTUjUZw',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      getYoutubePlaylist()
+      loadVideo()
+    }
+
+    function onPlayerStateChange(event) {
+        if(event.data === 0) {
+            nextVideo();
+        }
+    }
+
+
+
+    var playlistData;
+    var playlist = [];
+    var playlistCursor = 0;
+
+
+    function getYoutubePlaylist(){
+      $.get( "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLbtP2pUMT_hukdtCayfrk592awflW5GEe&key=AIzaSyA7fefWbbJbbO3_iogXyki31Va_mxsH7_4", function( data ) {
+        // console.log(data)
+        playlistData = data
+        // playlistData = JSON.parse(data);
+        for (i in playlistData.items){
+          playlist.push(playlistData.items[i].snippet.resourceId.videoId)
+        }
+        player.cueVideoById(playlist[0])
+      });
+    }
+
+    function loadVideo(){
+        player.cueVideoById(playlist[playlistCursor])
+        $(".title").html("<h1>"+playlistMeta[playlistCursor].title+"</h1>");
+        $(".description").html("<p>"+playlistMeta[playlistCursor].desc+"</p>");
+    }
+
+    function nextVideo(){
+      if(playlistCursor < playlist.length - 1){
+        playlistCursor++;
+        loadVideo();
+      }
+    }
+
+    function prevVideo(){
+      if(playlistCursor >= 1){
+        playlistCursor--;
+        loadVideo();
+      }
+    }
+
+    function toggleIndex(){
+        $(".index-modal").toggleClass("index-modal-active");
+    }
+
+    function toggleMap(){
+      $("#map").toggleClass("open-map");
+    }</script></body></html>
