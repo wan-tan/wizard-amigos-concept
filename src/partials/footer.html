@@ -12,8 +12,56 @@
 <script>
     var playlistMeta = [
         {"title": "Welcome to Wizard Amigos!", "desc":"This is a eLearning platform for our community of freelance programmers, the coding amigos! We meet up twice a week (Tuesday & Friday from 7PM to open end) at Co.Up in Berlin-Kreuzberg to work, talk, inspire and learn from each other.<br/><br/>In the next videos we will guide you from the very beginnings of internet literacy to becoming coding wizard."},
-        {"title": "How to create a gmail account", "desc":"asd2"},
-        {"title": "title3", "desc":"asd3"}
+        {"title": "Create Gmail account", "desc" : ""},
+        {"title": "Install Google Chrome Browser", "desc" : ""},
+        {"title": "Chrome Profile and Bookmark bar", "desc" : ""},
+        {"title": "Create a Github Profile", "desc" : ""},
+        {"title": "Create a funky avatar", "desc" : ""},
+        {"title": "Google Translate and Wikipedia", "desc" : ""},
+        {"title": "Github Gists", "desc" : ""},
+        {"title": "Type with all 10 fingers", "desc" : ""},
+        {"title": "Create a screencast using Screencastify", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "Typing special characters", "desc" : ""},
+        {"title": "Shortcuts for special characters", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "Theory (strings, numbers, variables, while loop)", "desc" : ""},
+        {"title": "Theory (JS console)", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "Theory (conditions and comparissons)", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""},
+        {"title": "", "desc" : ""}
+
     ]
 
     function hideChat(){
@@ -31,11 +79,10 @@
 
     $(document).ready(function() {
 
-
       /* ANIMSITION INIT */
       $(".animsition").animsition({
-        inClass: 'fade-in-down-sm',
-        outClass: 'fade-out-up-sm',
+        inClass: 'fade-in',
+        outClass: 'fade-out',
         inDuration: 1500,
         outDuration: 800,
         linkElement: '.animsition-link',
@@ -111,20 +158,43 @@
 
     function nextVideo(){
       if(playlistCursor < playlist.length - 1){
-        playlistCursor++;
-        loadVideo();
+        playlistCursor++
+        loadVideo()
       }
     }
 
     function prevVideo(){
       if(playlistCursor >= 1){
-        playlistCursor--;
-        loadVideo();
+        playlistCursor--
+        loadVideo()
       }
     }
 
-    function toggleIndex(){
-        $(".index-modal").toggleClass("index-modal-active");
+    function gotoVideo(target){
+        playlistCursor = target
+        loadVideo()
+        closeIndex()
+    }
+
+    function openIndex(){
+        $(".modal-index").toggleClass("modal-index-active");
+        $(".modal-bg").toggleClass("modal-index-active");
+        var dom = "<ul>"
+        for (x in playlistMeta){
+            dom += "<li onclick='gotoVideo(" + x + ")'>"+ x + " &nbsp; - &nbsp; " + playlistMeta[x].title + "</li>"
+        }
+        dom += "</ul>"
+        $(".modal-index").html(dom)
+
+
+        for(i = 0; i < playlistData.items.length; i++){
+            console.log(playlistData.items[i].snippet.title)
+        }
+    }
+
+    function closeIndex(){
+        $(".modal-index").toggleClass("modal-index-active");
+        $(".modal-bg").toggleClass("modal-index-active");
     }
 
     function toggleMap(){
