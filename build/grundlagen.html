@@ -140,7 +140,7 @@
 
     function loadVideo(){
         player.cueVideoById(playlist[playlistCursor])
-        $(".title").html("<h1>"+playlistMeta[playlistCursor].title+"</h1>");
+        $(".title").html("<h1>"+playlistCursor+" - "+playlistMeta[playlistCursor].title+"</h1>");
         $(".description").html("<p>"+playlistMeta[playlistCursor].desc+"</p>");
     }
 
@@ -173,11 +173,6 @@
         }
         dom += "</ul>"
         $(".modal-index").html(dom)
-
-
-        for(i = 0; i < playlistData.items.length; i++){
-            console.log(playlistData.items[i].snippet.title)
-        }
     }
 
     function closeIndex(){

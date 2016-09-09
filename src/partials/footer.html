@@ -7,8 +7,6 @@
   <script src="http://dev/wizardAmigosConcept/build/js/bundle.js"></script>
 
 
-
-
 <script>
     var playlistMeta = [
         {"title": "Welcome to Wizard Amigos!", "desc":"This is a eLearning platform for our community of freelance programmers, the coding amigos! We meet up twice a week (Tuesday & Friday from 7PM to open end) at Co.Up in Berlin-Kreuzberg to work, talk, inspire and learn from each other.<br/><br/>In the next videos we will guide you from the very beginnings of internet literacy to becoming coding wizard."},
@@ -61,8 +59,9 @@
         {"title": "", "desc" : ""},
         {"title": "", "desc" : ""},
         {"title": "", "desc" : ""}
-
     ]
+
+    
 
     function hideChat(){
         $("#chat").toggleClass("disabled-chat")
@@ -152,7 +151,7 @@
 
     function loadVideo(){
         player.cueVideoById(playlist[playlistCursor])
-        $(".title").html("<h1>"+playlistMeta[playlistCursor].title+"</h1>");
+        $(".title").html("<h1>"+playlistCursor+" - "+playlistMeta[playlistCursor].title+"</h1>");
         $(".description").html("<p>"+playlistMeta[playlistCursor].desc+"</p>");
     }
 
@@ -185,11 +184,6 @@
         }
         dom += "</ul>"
         $(".modal-index").html(dom)
-
-
-        for(i = 0; i < playlistData.items.length; i++){
-            console.log(playlistData.items[i].snippet.title)
-        }
     }
 
     function closeIndex(){
