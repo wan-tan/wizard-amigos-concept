@@ -155,8 +155,6 @@ h1, h2, h3, h4, h5
 
 
 
-
-
 // ------------------------------------------------------------------------------------
 // CONTENT
 // ------------------------------------------------------------------------------------
@@ -165,7 +163,7 @@ iframe
 	border none
 
 #video
-	min-height 350px
+	min-height 350
 	border-bottom 1px solid #ddd
 
 #content
@@ -177,18 +175,21 @@ iframe
 	background #f9f9f9
 
 #toggle-nav, #toggle-chat
-	position absolute
+	position fixed
 	padding 10px 13px
 	background $color1_2
 	bottom 0%
 	z-index 100
 	color #fff
+
 #toggle-nav i, #toggle-chat i
 	transform rotate(0deg)
 	transition all .8s cubic-bezier(0.7, 0, 0.4, 1)
 
 #toggle-chat
-	right 0
+    transition right .8s cubic-bezier(0.7, 0, 0.4, 1)
+    right 25%
+
 
 
 
@@ -424,3 +425,6 @@ nav.disabled-nav
 
 #toggle-chat.disabled-chat i
 	transform rotate(180deg)
+
+#toggle-chat.disabled-chat
+    right 0%
