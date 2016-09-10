@@ -13,21 +13,14 @@ var ref = new Firebase('https://wizard-amigos.firebaseio.com/')
 
 
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 887b680f45f9123e6e747b70e790b3e4639bf044
 // ---------------------------------------------------------------------------------------------------------------------------
 // LOAD VIDEO DATA
 // ---------------------------------------------------------------------------------------------------------------------------
 var playlistMeta = []
-<<<<<<< HEAD
 var playlistData
 var playlist = []
 var playlistCursor = 0
 var player
-
 
 
 ref.child("videos").once('value', function (data) {
@@ -41,24 +34,10 @@ ref.child("videos").once('value', function (data) {
     dom += "</ul>"
     $(".modal-index").html(dom)
 
-
-
     // ADD VIDEO METADATA
     $(".title").html("<h1>"+playlistCursor+" - "+playlistMeta[playlistCursor].title+"</h1>")
     $(".description").html("<p>"+playlistMeta[playlistCursor].desc+"</p>")
     onYouTubePlayerAPIReady()
-=======
-ref.child("videos").once('value', function (data) {
-//     playlistMeta = data.val()
-//     var dom = "<ul>"
-//     for (x in playlistMeta){
-//         dom += "<li onclick='gotoVideo(" + x + ")'>"+ x + " &nbsp; - &nbsp; " + playlistMeta[x].title + "</li>"
-//     }
-//     dom += "</ul>"
-//     $(".modal-index").html(dom)
-//     $(".title").html("<h1>"+playlistCursor+" - "+playlistMeta[playlistCursor].title+"</h1>")
-//     $(".description").html("<p>"+playlistMeta[playlistCursor].desc+"</p>")
->>>>>>> 887b680f45f9123e6e747b70e790b3e4639bf044
 })
 
 
@@ -73,25 +52,14 @@ var json
 ref.child("skills").once('value', function (data) {
     json = data.val()
     // console.log(json)
-<<<<<<< HEAD
     init();
-=======
-    initSkilltree();
->>>>>>> 887b680f45f9123e6e747b70e790b3e4639bf044
 })
 
 
 
 
 
-<<<<<<< HEAD
 
-
-
-// ---------------------------------------------------------------------------------------------------------------------------
-// YOUTUBE PLAYER
-// ---------------------------------------------------------------------------------------------------------------------------
-=======
 // ---------------------------------------------------------------------------------------------------------------------------
 // YOUTUBE PLAYER
 // ---------------------------------------------------------------------------------------------------------------------------
@@ -100,7 +68,7 @@ var playlist = []
 var playlistCursor = 0
 var player
 
->>>>>>> 887b680f45f9123e6e747b70e790b3e4639bf044
+
 function onYouTubePlayerAPIReady() {
     player = new YT.Player('player', {
         // height: '390',
@@ -136,8 +104,8 @@ function getYoutubePlaylist(){
 
 function loadVideo(){
     player.cueVideoById(playlist[playlistCursor])
-    // $(".title").html("<h1>"+playlistCursor+" - "+playlistMeta[playlistCursor].title+"</h1>");
-    // $(".description").html("<p>"+playlistMeta[playlistCursor].desc+"</p>");
+    $(".title").html("<h1>"+playlistCursor+" - "+playlistMeta[playlistCursor].title+"</h1>");
+    $(".description").html("<p>"+playlistMeta[playlistCursor].desc+"</p>");
 }
 
 function nextVideo(){
@@ -162,12 +130,6 @@ function gotoVideo(target){
 
 
 
-
-
-
-
-
-<<<<<<< HEAD
 
 
 
@@ -203,11 +165,6 @@ $(document).ready(function() {
 
 
 
-
-function openIndex(){
-    $(".modal-index").toggleClass("modal-index-active");
-    $(".modal-bg").toggleClass("modal-index-active");
-=======
 // -----------------------------------------------------------------------------------------------------------------------
 // ANIMATION TOGGLES
 // -----------------------------------------------------------------------------------------------------------------------
@@ -227,7 +184,6 @@ function hideNav(){
 function openIndex(){
     $(".modal-index").toggleClass("modal-index-active")
     $(".modal-bg").toggleClass("modal-index-active")
->>>>>>> 887b680f45f9123e6e747b70e790b3e4639bf044
 }
 
 function closeIndex(){
@@ -239,7 +195,6 @@ function openMap(){
     $("#map").addClass("open-map")
 }
 
-<<<<<<< HEAD
 function hideChat(){
     $("#chat").toggleClass("disabled-chat")
     $("#content").toggleClass("disabled-chat")
@@ -254,6 +209,9 @@ function hideNav(){
 }
 
 
+function toggleMap(){
+    $("#map").toggleClass("open-map");
+}
 
 
 
@@ -1156,7 +1114,14 @@ function init(){
     //end
 
 }
-=======
+
+
+
+
+
+
+
+
 
 
 
@@ -1190,4 +1155,3 @@ $(document).ready(function() {
     })
 
 })
->>>>>>> 887b680f45f9123e6e747b70e790b3e4639bf044
