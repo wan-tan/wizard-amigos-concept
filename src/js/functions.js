@@ -187,7 +187,20 @@ function closeIndex(){
 
 function openMap(){
     $("#map").addClass("open-map")
+    $("#map-modal-bg").addClass("open-map")
 }
+
+function closeMap(){
+    $("#map").removeClass("open-map");
+    $("#map-modal-bg").removeClass("open-map")
+}
+
+// TODO REPLACE INLINE ONCLICK WITH JQUERY LISTENERS
+$( ".close-btn" ).on("click", function( event ) {
+  event.stopPropagation();
+  $("#map").removeClass("open-map");
+  $("#map-modal-bg").removeClass("open-map")
+});
 
 function hideChat(){
     $("#chat").toggleClass("disabled-chat")
@@ -202,10 +215,6 @@ function hideNav(){
     $("#toggle-nav").toggleClass("disabled-nav")
 }
 
-
-function toggleMap(){
-    $("#map").toggleClass("open-map");
-}
 
 
 
@@ -247,7 +256,7 @@ function init(){
         //id of viz container element
         injectInto: 'infovis',
         //set duration for the animation
-        duration: 800,
+        duration: 300,
         //set animation transition type
         transition: $jit.Trans.Quart.easeInOut,
         //set distance between node and its children
@@ -261,8 +270,8 @@ function init(){
         //set overridable=true for styling individual
         //nodes or edges
         Node: {
-            height: 20,
-            width: 60,
+            height: 30,
+            width: 90,
             type: 'rectangle',
             color: '#aaa',
             overridable: true

@@ -24,8 +24,9 @@
       </ul>
     </nav>
 
-    <div id="map" onclick="toggleMap()">
+    <div id="map" onclick="openMap()">
         <div class="shine-me"></div>
+        <div class="close-btn" onclick="closeMap(e)">x</div>
         <h3 class="map-title">Skilltree</h3>
         <div id="map-bg"></div>
         <div id="id-list" style="display:none"></div>
@@ -50,3 +51,4 @@
         </div>
         <div id="log" style="display:none"></div>
     </div>
+    <div id="map-modal-bg" onclick="closeMap()"></div>

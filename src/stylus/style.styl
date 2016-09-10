@@ -275,6 +275,37 @@ h2.badge-label
 	width 92%
 	height 88%
 
+#map-modal-bg
+    position fixed
+    width 100%
+    height 100%
+    z-index -1
+    background #000
+    opacity 0
+    transition all .6s cubic-bezier(0.7, 0, 0.4, 1)
+
+.close-btn
+    position absolute
+    background $color4
+    padding 7px 15px 10px 15px
+    font-weight 900
+    font-size 1.2em
+    top -100px
+    left 0
+    opacity .5
+    color #222
+    transition all .6s cubic-bezier(0.7, 0, 0.4, 1)
+
+
+#map.open-map .close-btn
+    top 0
+    z-index 9998
+    opacity 1
+
+#map-modal-bg.open-map
+    z-index 9997
+    opacity .8
+    transition all .6s cubic-bezier(0.7, 0, 0.4, 1)
 
 #map:hover
 	cursor pointer
@@ -292,6 +323,14 @@ h2.badge-label
     top 33%
     left 0
     text-transform uppercase
+
+.node
+    width 90px !important
+    background rgba(0,0,0,.2)
+    height 50px !important
+    padding 6px 0 0 0 !important
+
+
 
 #infovis
     z-index 100
