@@ -13,7 +13,7 @@ $read_font = "Lato"
 $color1 = #086375
 $color2 = #1DD3B0
 $color3 = #35142C
-$color4 = #AFFC41
+$color4 = #FFEE33
 $color5 = #B2FF9E
 $color6 = #F23AAB
 $color7 = #828AFF
@@ -251,28 +251,86 @@ h2.badge-label
 	left 15px
 	width calc(15% - 35px)
 	height 200px
-	padding 10px
 	box-sizing border-box
-	background $color1_2
-	border 5px solid $color1_2
-	background-position top center
-	color #fff
+	border 5px solid #333
 	transition all .6s cubic-bezier(0.7, 0, 0.4, 1)
-	background url(http://www.ourprg.com/wp-content/uploads/2015/06/fermiparadox2.jpg)
-	background-size cover
 	z-index 9999
+#map
+    overflow hidden
 
 #map.disabled-nav
 	left -15%
 
+#map-bg
+    position absolute
+    width 100%
+    height 100%
+    background url(bg.png)
+    background-position center center
+    z-index -1
+
 #map.open-map
-	left 2.5%
-	bottom 2.5%
-	width 95%
-	height 95%
+	left 4%
+	bottom 6%
+	width 92%
+	height 88%
+
 
 #map:hover
 	cursor pointer
+
+#map.open-map .map-title
+    top 0
+
+.map-title
+    transition all .6s cubic-bezier(0.7, 0, 0.4, 1)
+    position absolute
+    color $color4
+    width 100%
+    height 100%
+    text-align center
+    top 33%
+    left 0
+    text-transform uppercase
+
+#infovis
+    z-index 100
+
+.shine-me {
+    position: absolute;
+    height: 100%;
+    width:100%; /*Make sure the animation is over the whole element*/
+    -webkit-animation-name: ShineAnimation;
+    -webkit-animation-duration: 3.6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(.12,.89,.98,.47);
+}
+
+@-webkit-keyframes ShineAnimation{
+    from {
+        background-repeat:no-repeat;
+        background-image:-webkit-linear-gradient(
+            top left,
+            rgba(255, 255, 255, 0.0) 0%,
+            rgba(255, 255, 255, 0.0) 47%,
+            $color4 48%,
+            $color4 50%,
+            $color4 51%,
+            rgba(255, 255, 255, 0.0) 52%,
+            rgba(255, 255, 255, 0.0) 100%
+        );
+        background-position:-350px -350px;
+        background-size: 600px 600px
+    }
+    to {
+        background-repeat:no-repeat;
+        background-position:200px 200px;
+    }
+}
+
+#map.open-map .shine-me{
+    -webkit-animation-duration: 0s;
+}
 
 .icon
 	padding-right 15px
@@ -443,9 +501,6 @@ nav.disabled-nav
 
 #infovis
     position relative
-    width 600px
-    height 600px
-    border 5px solid #fff
     margin auto
     overflow hidden
 
@@ -454,10 +509,10 @@ nav.disabled-nav
     width  139px
     background-color #fff
     border 1px solid #ccc
-    -moz-box-shadow #555 2px 2px 8px
-    -webkit-box-shadow #555 2px 2px 8px
-    -o-box-shadow #555 2px 2px 8px
-    box-shadow #555 2px 2px  8px
     opacity 0.9
     font-size 10px
     padding 7px
+
+#infovis, #infovis-canvaswidget, canvas
+    width 1400px !important
+    height 800px !important
