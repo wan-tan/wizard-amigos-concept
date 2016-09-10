@@ -35,10 +35,10 @@ $column-border-width = 3px
 // MIXINS
 // ------------------------------------------------------------------------------------
 media_queries = {
- mobile : "only screen and (max-width: 600px)",
- tablet : "only screen and (min-width: 601px) and (max-width: 800px)",
- desktop : "only screen and (min-width: 801px) and (max-width: 1200px)"
- wide  : "only screen and (min-width: 1201px)"
+    mobile : "only screen and (max-width: 600px)",
+    tablet : "only screen and (min-width: 601px) and (max-width: 800px)",
+    desktop : "only screen and (min-width: 801px) and (max-width: 1200px)"
+    wide  : "only screen and (min-width: 1201px)"
 }
 
 for_breakpoint(breakpoints)
@@ -128,12 +128,8 @@ h1, h2, h3, h4, h5
 // ------------------------------------------------------------------------------------
 // CHAT
 // ------------------------------------------------------------------------------------
-#chat iframe, #content, #chat, .container
-	height 100%
-
-
 #chat iframe
-	position absolute
+    position absolute
 	width 111%
 	height 111%
 	top 50%
@@ -149,7 +145,7 @@ h1, h2, h3, h4, h5
 	right 0
 
 #chat, #content, nav
-	min-height 100vh
+	height 100vh
 	position absolute
 
 
@@ -173,6 +169,15 @@ iframe
 	left 15%
 	transition width .8s cubic-bezier(0.7, 0, 0.4, 1), left .8s cubic-bezier(0.7, 0, 0.4, 1)
 	background #f9f9f9
+    overflow hidden
+
+#content-wrapper
+    height 100vh
+    overflow-y auto
+    padding-bottom 40px
+    // hide scrollbar hack
+    width calc(100% + 17px)
+    box-sizing border-box
 
 #toggle-nav, #toggle-chat
 	position fixed
@@ -248,14 +253,12 @@ h2.badge-label
 	height 200px
 	padding 10px
 	box-sizing border-box
-	background $color1_2
-	border 5px solid $color1_2
-	background-position top center
-	color #fff
+	border 5px solid #2f2f2f
+    background-position top center
+    background-size cover
+    color #fff
 	transition all .6s cubic-bezier(0.7, 0, 0.4, 1)
-	background url(http://www.ourprg.com/wp-content/uploads/2015/06/fermiparadox2.jpg)
-	background-size cover
-	z-index 9999
+	z-index 999
 
 #map.disabled-nav
 	left -15%
@@ -364,7 +367,6 @@ h2.badge-label
     transition all .8s cubic-bezier(0.7, 0, 0.4, 1)
     ul
         width 100%
-
         li
             display block
             width 100%
