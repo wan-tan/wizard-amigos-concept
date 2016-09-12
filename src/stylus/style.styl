@@ -245,6 +245,16 @@ h2.badge-label
 	text-decoration none
 	font-family Roboto Slab
 
+
+.icon
+	padding-right 15px
+
+
+
+// ------------------------------------------------------------------------------------
+// SKILL MAP
+// ------------------------------------------------------------------------------------
+
 #map
 	position fixed
 	bottom 15px
@@ -261,19 +271,13 @@ h2.badge-label
 #map.disabled-nav
 	left -15%
 
-#map-bg
-    position absolute
-    width 100%
-    height 100%
-    background url(bg.png)
-    background-position center center
-    z-index -1
 
 #map.open-map
 	left 4%
 	bottom 6%
 	width 92%
 	height 88%
+
 
 #map-modal-bg
     position fixed
@@ -283,6 +287,15 @@ h2.badge-label
     background #000
     opacity 0
     transition all .6s cubic-bezier(0.7, 0, 0.4, 1)
+
+#map-bg
+    position absolute
+    width 100%
+    height 100%
+    background url(bg.png)
+    background-position center center
+    z-index -1
+
 
 .close-btn
     position absolute
@@ -327,23 +340,39 @@ h2.badge-label
 .node
     width 90px !important
     background rgba(0,0,0,.2)
-    height 50px !important
+    height 30px !important
     padding 6px 0 0 0 !important
 
-
-
 #infovis
+    position relative
+    margin auto
+    overflow hidden
     z-index 100
 
-.shine-me {
-    position: absolute;
-    height: 100%;
-    width:100%; /*Make sure the animation is over the whole element*/
-    -webkit-animation-name: ShineAnimation;
-    -webkit-animation-duration: 3.6s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: cubic-bezier(.12,.89,.98,.47);
-}
+.tip
+    color  #111
+    width  139px
+    background-color #fff
+    border 1px solid #ccc
+    opacity 0.9
+    font-size 10px
+    padding 7px
+
+#infovis, #infovis-canvaswidget, canvas
+    width 1400px !important
+    height 800px !important
+
+
+.shine-me
+    position  absolute
+    height  100%
+    width 100% /*Make sure the animation is over the whole element*/
+    -webkit-animation-name  ShineAnimation
+    -webkit-animation-duration  3s
+    -webkit-animation-iteration-count  infinite
+    -webkit-animation-timing-function  cubic-bezier(.12,.89,.98,.47)
+    -webkit-animation-delay 4s
+
 
 @-webkit-keyframes ShineAnimation{
     from {
@@ -371,9 +400,12 @@ h2.badge-label
     -webkit-animation-duration: 0s;
 }
 
-.icon
-	padding-right 15px
 
+
+
+// ------------------------------------------------------------------------------------
+// YOUTUBE COMPONENT
+// ------------------------------------------------------------------------------------
 .youtubeComponent
 	position relative
 	width 100%
@@ -414,6 +446,14 @@ h2.badge-label
 	height 390px
 	width 100%
 	background #000
+
+
+
+
+
+// ------------------------------------------------------------------------------------
+// CONTENT COMPONENT
+// ------------------------------------------------------------------------------------
 
 
 .text
@@ -501,6 +541,9 @@ h2.badge-label
 
 
 
+
+
+
 // ------------------------------------------------------------------------------------
 // DISABLE FIELDS
 // ------------------------------------------------------------------------------------
@@ -530,28 +573,3 @@ nav.disabled-nav
 
 #toggle-chat.disabled-chat
     right 0%
-
-
-
-
-// ------------------------------------------------------------------------------------
-// SKILLTREE
-// ------------------------------------------------------------------------------------
-
-#infovis
-    position relative
-    margin auto
-    overflow hidden
-
-.tip
-    color  #111
-    width  139px
-    background-color #fff
-    border 1px solid #ccc
-    opacity 0.9
-    font-size 10px
-    padding 7px
-
-#infovis, #infovis-canvaswidget, canvas
-    width 1400px !important
-    height 800px !important

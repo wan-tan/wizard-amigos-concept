@@ -52,12 +52,6 @@ ref.child("skills").once('value', function (data) {
 })
 
 
-
-
-
-
-
-
 // ---------------------------------------------------------------------------------------------------------------------------
 // YOUTUBE PLAYER
 // ---------------------------------------------------------------------------------------------------------------------------
@@ -85,7 +79,7 @@ function onPlayerStateChange(event) {
 }
 
 function getYoutubePlaylist(){
-    $.get( "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLbtP2pUMT_hukdtCayfrk592awflW5GEe&key=AIzaSyA7fefWbbJbbO3_iogXyki31Va_mxsH7_4", function( data ) {
+    $.get( "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLbtP2pUMT_hukdtCayfrk592awflW5GEe&key=AIzaSyB6yBDZDm5CrTfSyB1ZZLtTcvim2kBCfYU", function( data ) {
         playlistData = data
         for (i in playlistData.items){
             playlist.push(playlistData.items[i].snippet.resourceId.videoId)
